@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Velvet Lash No.3 — ARI Beauty</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--white:#FFFFFF;--off-white:#FDF8F9;--blush:#FBE8ED;--blush-deep:#F5D0DC;--rose:#D4607A;--rose-deep:#A83050;--rose-light:#F0A0B8;--charcoal:#1C1C1C;--mid:#5A5A5A;--muted:#A0A0A0;--border:rgba(212,96,122,0.15);--success:#4A7C59}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--white);color:var(--charcoal);font-family:'DM Sans',sans-serif;cursor:none;overflow-x:hidden}
+.cur{width:9px;height:9px;background:var(--rose);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)}
+.cur-ring{width:32px;height:32px;border:1.5px solid var(--rose);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .1s;opacity:.5}
+.cur.h{width:14px;height:14px}.cur-ring.h{width:46px;height:46px;opacity:.9}
+nav{position:sticky;top:0;z-index:100;height:72px;padding:0 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;letter-spacing:.18em;color:var(--charcoal);text-decoration:none}
+.nav-logo em{font-style:italic;color:var(--rose)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--rose)}
+.nav-actions{display:flex;gap:6px}
+.nav-btn{width:40px;height:40px;border:none;background:none;color:var(--mid);display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .25s;cursor:pointer}
+.nav-btn:hover{background:var(--blush);color:var(--rose)}
+.nav-btn svg{width:18px;height:18px;stroke-width:1.5}
+
+.breadcrumb{max-width:1200px;margin:0 auto;padding:28px 80px 0;display:flex;gap:10px;font-size:12px;color:var(--muted)}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}.breadcrumb a:hover{color:var(--rose)}
+
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:1200px;margin:0 auto;padding:32px 80px 80px}
+
+/* GALLERY */
+.gallery-main{position:relative;overflow:hidden;border-radius:8px;background:var(--blush);margin-bottom:12px;cursor:zoom-in}
+.gallery-main img{width:100%;height:600px;object-fit:cover;transition:transform .8s cubic-bezier(.25,.1,.25,1);display:block}
+.gallery-main:hover img{transform:scale(1.04)}
+.gallery-thumbs{display:flex;gap:10px}
+.thumb{width:80px;height:96px;border-radius:4px;border:2px solid transparent;overflow:hidden;cursor:pointer;transition:all .3s;background:var(--blush);flex-shrink:0}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb:hover,.thumb.active{border-color:var(--rose)}
+
+/* PRODUCT INFO */
+.pi-brand{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--rose);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.pi-line{width:24px;height:1px;background:var(--rose)}
+.pi-name{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;line-height:1.0;margin-bottom:16px}
+.pi-rating{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.stars{color:var(--rose);font-size:15px;letter-spacing:2px}
+.review-count{font-size:13px;color:var(--muted);text-decoration:underline;cursor:pointer}.review-count:hover{color:var(--rose)}
+.pi-price{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.price-main{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700}
+.price-old{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--muted);text-decoration:line-through}
+.price-save{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--rose);padding:4px 10px;border-radius:2px}
+.pi-stock{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--success);margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.pi-stock::before{content:'';width:6px;height:6px;background:var(--success);border-radius:50%}
+.divider{height:1px;background:var(--border);margin:24px 0}
+.opt-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.opt-label span{color:var(--charcoal);margin-left:8px}
+
+.swatches{display:flex;gap:10px;margin-bottom:20px}
+.sw{width:34px;height:34px;border-radius:50%;border:2.5px solid transparent;cursor:pointer;transition:all .3s;position:relative}
+.sw:hover,.sw.active{border-color:var(--rose)}
+.sw.active::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--rose-light)}
+
+.size-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.sp{padding:10px 20px;border:1.5px solid var(--border);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);cursor:pointer;border-radius:2px;transition:all .3s}
+.sp:hover{border-color:var(--rose);color:var(--rose)}
+.sp.active{background:var(--rose);color:#fff;border-color:var(--rose)}
+
+.cta-row{display:flex;gap:10px;margin-bottom:16px}
+.qty-ctrl{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:2px}
+.qty-b{width:44px;height:54px;background:none;border:none;color:var(--mid);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s}
+.qty-b:hover{color:var(--rose)}
+.qty-n{width:40px;text-align:center;font-size:15px;font-weight:500;background:none;border:none;color:var(--charcoal)}
+.atc-btn{flex:1;height:54px;background:var(--rose);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:10px}
+.atc-btn:hover{background:var(--rose-deep);box-shadow:0 8px 24px rgba(168,48,80,.3)}
+.atc-btn:active{transform:scale(.98)}
+.atc-btn.added{background:var(--success)}
+.wish-btn{width:54px;height:54px;border:1.5px solid var(--border);background:none;border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;flex-shrink:0}
+.wish-btn:hover{border-color:var(--rose);background:var(--blush)}
+.wish-btn.active{background:var(--blush);border-color:var(--rose)}
+.wish-btn svg{width:20px;height:20px;stroke:var(--mid);stroke-width:1.5;fill:none;transition:all .3s}
+.wish-btn.active svg{stroke:var(--rose);fill:var(--rose)}
+.secure-note{font-size:12px;color:var(--muted);text-align:center;font-weight:300}
+
+.delivery-box{margin-top:24px;background:var(--off-white);border:1px solid var(--border);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.del-row{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--mid);font-weight:300}
+.del-row svg{width:15px;height:15px;stroke:var(--rose);stroke-width:1.5;flex-shrink:0}
+
+/* TABS */
+.tabs-section{max-width:1200px;margin:0 auto;padding:0 80px 80px}
+.tab-bar{display:flex;border-bottom:1px solid var(--border);margin-bottom:40px}
+.tab-btn{padding:14px 28px;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .3s;margin-bottom:-1px}
+.tab-btn:hover{color:var(--mid)}
+.tab-btn.active{color:var(--rose);border-bottom-color:var(--rose)}
+.tab-content{display:none}.tab-content.active{display:block;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.reviews-summary{display:flex;gap:48px;margin-bottom:40px;padding-bottom:36px;border-bottom:1px solid var(--border)}
+.rating-big{text-align:center}
+.rating-num{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:700;color:var(--rose);line-height:1}
+.rating-stars-big{color:var(--rose);font-size:20px;letter-spacing:3px;margin:8px 0}
+.rating-total{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.rating-bars{flex:1;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.bar-row{display:flex;align-items:center;gap:14px}
+.bar-label{font-size:12px;color:var(--muted);width:36px;flex-shrink:0}
+.bar-track{flex:1;height:4px;background:var(--blush-deep);border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;background:var(--rose);border-radius:2px}
+.bar-pct{font-size:12px;color:var(--muted);width:30px;text-align:right}
+.review-card{padding:28px 0;border-bottom:1px solid var(--border)}
+.review-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.reviewer{display:flex;align-items:center;gap:12px}
+.rev-av{width:42px;height:42px;border-radius:50%;background:var(--blush);border:2px solid var(--rose-light);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--rose)}
+.rev-name{font-size:14px;font-weight:500;color:var(--charcoal)}
+.rev-date{font-size:12px;color:var(--muted);font-weight:300}
+.rev-stars{color:var(--rose);font-size:13px;letter-spacing:2px}
+.rev-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;margin-bottom:7px}
+.rev-body{font-size:14px;color:var(--mid);line-height:1.7;font-weight:300}
+.verified{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--success);margin-top:10px}
+.verified svg{width:12px;height:12px;stroke-width:2}
+
+/* CROSS-SELL */
+.crosssell{max-width:1200px;margin:0 auto;padding:0 80px 80px}
+.cs-sec-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.cs-line{width:24px;height:1px;background:var(--rose)}
+.cs-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;margin-bottom:32px}
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cs-card{border-radius:4px;overflow:hidden;background:var(--white);border:1px solid var(--border);transition:box-shadow .3s;cursor:pointer}
+.cs-card:hover{box-shadow:0 8px 32px rgba(212,96,122,.1)}
+.cs-img{aspect-ratio:3/4;overflow:hidden;background:var(--blush)}
+.cs-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.cs-card:hover .cs-img img{transform:scale(1.05)}
+.cs-info{padding:14px}
+.cs-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;margin-bottom:4px}
+.cs-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--rose);margin-bottom:10px}
+.cs-add{width:100%;padding:10px;background:none;border:1.5px solid var(--border);font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);cursor:pointer;border-radius:2px;transition:all .3s}
+.cs-add:hover{background:var(--rose);color:#fff;border-color:var(--rose)}
+
+.toast{position:fixed;bottom:24px;right:24px;background:var(--charcoal);color:#fff;padding:13px 20px;display:flex;align-items:center;gap:10px;z-index:9000;border-radius:4px;transform:translateX(130%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);font-size:13px;min-width:240px}
+.toast.show{transform:translateX(0)}
+.toast-dot{width:7px;height:7px;background:var(--rose-light);border-radius:50%;flex-shrink:0}
+.toast-bar{position:absolute;bottom:0;left:0;height:2px;background:var(--rose);border-radius:0 0 4px 4px;animation:tb 3s linear forwards}
+@keyframes tb{from{width:100%}to{width:0%}}
+
+.confetti-piece{position:fixed;width:6px;height:6px;border-radius:50%;opacity:0;pointer-events:none;z-index:9999}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+<div class="toast" id="toast"><div class="toast-dot"></div><span id="toastMsg"></span><div class="toast-bar" id="toastBar"></div></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">ARI<em>✦</em></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="window.location.href='shop.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="nav-btn" onclick="window.location.href='checkout.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+  </div>
+</nav>
+
+<div class="breadcrumb"><a href="index.html">Home</a><span>›</span><a href="shop.html">Shop</a><span>›</span><span style="color:var(--rose)">Velvet Lash No.3</span></div>
+
+<div class="pdp">
+  <div class="gallery">
+    <div class="gallery-main" id="galleryMain">
+      <img id="galleryImg" src="https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=700&h=700&fit=crop&q=80" alt="Velvet Lash No.3"/>
+    </div>
+    <div class="gallery-thumbs">
+      <div class="thumb active" onclick="swapImg(this,'https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=700&h=700&fit=crop&q=80')"><img src="https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=200&h=240&fit=crop&q=80" alt=""/></div>
+      <div class="thumb" onclick="swapImg(this,'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&h=700&fit=crop&q=80')"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=200&h=240&fit=crop&q=80" alt=""/></div>
+      <div class="thumb" onclick="swapImg(this,'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=700&h=700&fit=crop&q=80&crop=top')"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=200&h=240&fit=crop&q=80&crop=top" alt=""/></div>
+      <div class="thumb" onclick="swapImg(this,'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=700&h=700&fit=crop&q=80')"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&h=240&fit=crop&q=80" alt=""/></div>
+    </div>
+  </div>
+
+  <div class="product-info">
+    <div class="pi-brand"><div class="pi-line"></div>ARI Cosmetic<div class="pi-line"></div></div>
+    <h1 class="pi-name">Velvet Lash<br>— No. 3</h1>
+    <div class="pi-rating"><span class="stars">★★★★★</span><span class="review-count" onclick="switchTab('reviews')">128 reviews</span></div>
+    <div class="pi-price"><span class="price-main">₮89,000</span><span class="price-old">₮109,000</span><span class="price-save">Save 18%</span></div>
+    <div class="pi-stock">In Stock — Ships today</div>
+    <div class="divider"></div>
+    <div class="opt-label">Color <span id="selColor">Noir Black</span></div>
+    <div class="swatches">
+      <div class="sw active" style="background:#1a0a0a" onclick="selSwatch(this,'Noir Black')" title="Noir Black"></div>
+      <div class="sw" style="background:#3d2b1a" onclick="selSwatch(this,'Warm Brown')" title="Warm Brown"></div>
+      <div class="sw" style="background:#8b5a6a" onclick="selSwatch(this,'Bordeaux')" title="Bordeaux"></div>
+      <div class="sw" style="background:#4a3a5a" onclick="selSwatch(this,'Midnight Plum')" title="Midnight Plum"></div>
+    </div>
+    <div class="opt-label">Volume <span id="selSize">Full Glam</span></div>
+    <div class="size-pills">
+      <div class="sp" onclick="selPill(this,'Natural')">Natural</div>
+      <div class="sp active" onclick="selPill(this,'Full Glam')">Full Glam</div>
+      <div class="sp" onclick="selPill(this,'Dramatic')">Dramatic</div>
+    </div>
+    <div class="divider"></div>
+    <div class="cta-row">
+      <div class="qty-ctrl"><button class="qty-b" onclick="chgQty(-1)">−</button><div class="qty-n" id="qtyN">1</div><button class="qty-b" onclick="chgQty(1)">+</button></div>
+      <button class="atc-btn" id="atcBtn" onclick="addToCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="17" height="17" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Add to Bag</button>
+      <button class="wish-btn" id="wishBtn" onclick="toggleWish()"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+    </div>
+    <div class="secure-note">🔒 Secure checkout · Free UB delivery over ₮150,000 · 30-day returns</div>
+    <div class="delivery-box">
+      <div class="del-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Same-day delivery in Ulaanbaatar (order before 2PM)</div>
+      <div class="del-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>30-day hassle-free returns</div>
+      <div class="del-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Reusable up to 30 wears</div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs-section">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('details')">Details</button>
+    <button class="tab-btn" onclick="switchTab('how')">How to Apply</button>
+    <button class="tab-btn" onclick="switchTab('reviews')">Reviews (128)</button>
+  </div>
+  <div class="tab-content active" id="tab-details">
+    <p style="font-size:15px;color:var(--mid);max-width:680px;line-height:1.9;font-weight:300;margin-bottom:32px">The Velvet Lash No.3 is our signature Full Glam style — crafted from premium synthetic silk with nano-magnetic technology. No glue, no damage, no morning ritual. Just align and let the magnets do the work.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+      <div style="padding:24px;background:var(--blush);border-radius:4px"><div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--rose);margin-bottom:8px">Nano Magnets</div><div style="font-size:13px;color:var(--mid);font-weight:300;line-height:1.6">N52-grade magnets embedded in the band for all-day secure hold without bulk.</div></div>
+      <div style="padding:24px;background:var(--blush);border-radius:4px"><div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--rose);margin-bottom:8px">Silk Fiber Band</div><div style="font-size:13px;color:var(--mid);font-weight:300;line-height:1.6">Medical-grade synthetic silk that flexes with your eyelid. So light you forget it's there.</div></div>
+      <div style="padding:24px;background:var(--blush);border-radius:4px"><div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--rose);margin-bottom:8px">30× Reusable</div><div style="font-size:13px;color:var(--mid);font-weight:300;line-height:1.6">Each set lasts up to 30 wears with proper care. Store in the included case.</div></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-how">
+    <div style="max-width:600px;display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;gap:20px"><div style="width:38px;height:38px;border-radius:50%;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;flex-shrink:0">1</div><div><div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;margin-bottom:5px">Apply the magnetic liner</div><div style="font-size:14px;color:var(--mid);font-weight:300">Draw a thin line with the ARI magnetic liner along your upper lash line. Wait 30 seconds to dry.</div></div></div>
+      <div style="display:flex;gap:20px"><div style="width:38px;height:38px;border-radius:50%;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;flex-shrink:0">2</div><div><div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;margin-bottom:5px">Place the lash</div><div style="font-size:14px;color:var(--mid);font-weight:300">Hold the lash above your line — the magnets guide it into place. No pressing required.</div></div></div>
+      <div style="display:flex;gap:20px"><div style="width:38px;height:38px;border-radius:50%;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;flex-shrink:0">3</div><div><div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;margin-bottom:5px">Remove & reuse</div><div style="font-size:14px;color:var(--mid);font-weight:300">Peel gently from the outer corner. Clean with micellar water and store in the box.</div></div></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-reviews">
+    <div class="reviews-summary">
+      <div class="rating-big"><div class="rating-num">4.9</div><div class="rating-stars-big">★★★★★</div><div class="rating-total">128 Reviews</div></div>
+      <div class="rating-bars">
+        <div class="bar-row"><span class="bar-label">5★</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><span class="bar-pct">88%</span></div>
+        <div class="bar-row"><span class="bar-label">4★</span><div class="bar-track"><div class="bar-fill" style="width:9%"></div></div><span class="bar-pct">9%</span></div>
+        <div class="bar-row"><span class="bar-label">3★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-pct">2%</span></div>
+        <div class="bar-row"><span class="bar-label">2★</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="bar-pct">1%</span></div>
+        <div class="bar-row"><span class="bar-label">1★</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-pct">0%</span></div>
+      </div>
+    </div>
+    <div class="review-card"><div class="review-head"><div class="reviewer"><div class="rev-av">S</div><div><div class="rev-name">Sarnai B.</div><div class="rev-date">March 2026</div></div></div><div class="rev-stars">★★★★★</div></div><div class="rev-title">These changed my morning routine entirely.</div><div class="rev-body">I've been doing lashes for 5 years. Tried every brand in UB. ARI is the only magnetic set I don't have to fuss with — they snap on in literally 20 seconds.</div><div class="verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Verified Purchase</div></div>
+    <div class="review-card"><div class="review-head"><div class="reviewer"><div class="rev-av">O</div><div><div class="rev-name">Oyuna D.</div><div class="rev-date">February 2026</div></div></div><div class="rev-stars">★★★★★</div></div><div class="rev-title">14 hours at a wedding. Not one adjustment.</div><div class="rev-body">Danced, cried happy tears, ate a full banquet — they never moved. The packaging is also genuinely beautiful. ARI feels like a luxury brand even at this price point.</div><div class="verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Verified Purchase</div></div>
+  </div>
+</div>
+
+<div class="crosssell">
+  <div class="cs-sec-label"><div class="cs-line"></div>You Might Also Love</div>
+  <div class="cs-title">Complete Your Look</div>
+  <div class="cs-grid">
+    <div class="cs-card" onclick="window.location.href='product.html'"><div class="cs-img"><img src="https://images.unsplash.com/photo-1560264357-8d9202b79e75?w=400&h=530&fit=crop&q=80" alt="Silk Flair"/></div><div class="cs-info"><div class="cs-name">Silk Flair No.1</div><div class="cs-price">₮79,000</div><button class="cs-add" onclick="event.stopPropagation();toast('Silk Flair No.1 added!')">+ Add to Bag</button></div></div>
+    <div class="cs-card" onclick="window.location.href='product.html'"><div class="cs-img"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=530&fit=crop&q=80" alt="Liner"/></div><div class="cs-info"><div class="cs-name">Noir Precision Liner</div><div class="cs-price">₮54,000</div><button class="cs-add" onclick="event.stopPropagation();toast('Liner added!')">+ Add to Bag</button></div></div>
+    <div class="cs-card" onclick="window.location.href='product.html'"><div class="cs-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=530&fit=crop&q=80" alt="Drama Queen"/></div><div class="cs-info"><div class="cs-name">Drama Queen No.7</div><div class="cs-price">₮94,000</div><button class="cs-add" onclick="event.stopPropagation();toast('Drama Queen added!')">+ Add to Bag</button></div></div>
+    <div class="cs-card" onclick="window.location.href='product.html'"><div class="cs-img"><img src="https://images.unsplash.com/photo-1596704017262-8d8d1e8b10b7?w=400&h=530&fit=crop&q=80" alt="Starter Kit"/></div><div class="cs-info"><div class="cs-name">Luxe Starter Kit</div><div class="cs-price">₮159,000</div><button class="cs-add" onclick="event.stopPropagation();toast('Starter Kit added!')">+ Add to Bag</button></div></div>
+  </div>
+</div>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function a(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+document.querySelectorAll('a,button,.thumb,.sw,.sp,.cs-card').forEach(el=>{el.addEventListener('mouseenter',()=>{cur.classList.add('h');ring.classList.add('h')});el.addEventListener('mouseleave',()=>{cur.classList.remove('h');ring.classList.remove('h')})});
+
+function swapImg(thumb,src){document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));thumb.classList.add('active');const img=document.getElementById('galleryImg');img.style.opacity='0';setTimeout(()=>{img.src=src;img.style.opacity='1'},200);img.style.transition='opacity .3s'}
+function selSwatch(el,name){document.querySelectorAll('.sw').forEach(s=>s.classList.remove('active'));el.classList.add('active');document.getElementById('selColor').textContent=name}
+function selPill(el,name){document.querySelectorAll('.sp').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('selSize').textContent=name}
+let qty=1;function chgQty(d){qty=Math.max(1,qty+d);document.getElementById('qtyN').textContent=qty}
+function addToCart(){
+  const btn=document.getElementById('atcBtn');
+  btn.textContent='✓ Added!';btn.classList.add('added');
+  confetti(btn);
+  toast('Velvet Lash No.3 added to bag ✦');
+  setTimeout(()=>{btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="17" height="17" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Add to Bag';btn.classList.remove('added')},2000);
+}
+function confetti(el){
+  const rect=el.getBoundingClientRect();
+  ['#D4607A','#F0A0B8','#FBE8ED','#fff'].forEach((c,ci)=>{
+    for(let i=0;i<6;i++){
+      const p=document.createElement('div');p.className='confetti-piece';p.style.cssText=`background:${c};left:${rect.left+rect.width/2}px;top:${rect.top+10}px`;
+      document.body.appendChild(p);
+      const angle=(i/6)*360+ci*20,dist=50+Math.random()*100;
+      p.animate([{opacity:1,transform:'translate(0,0) scale(1)'},{opacity:0,transform:`translate(${Math.cos(angle*Math.PI/180)*dist}px,${Math.sin(angle*Math.PI/180)*dist-80}px) scale(0)`}],{duration:600,easing:'ease-out'}).onfinish=()=>p.remove();
+    }
+  });
+}
+function toggleWish(){const b=document.getElementById('wishBtn');b.classList.toggle('active');toast(b.classList.contains('active')?'Saved to wishlist ♡':'Removed from wishlist')}
+function switchTab(id){document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',['details','how','reviews'][i]===id));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active')}
+let tid;function toast(msg){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;const bar=document.getElementById('toastBar');bar.style.animation='none';void bar.offsetWidth;bar.style.animation='tb 3s linear forwards';t.classList.add('show');clearTimeout(tid);tid=setTimeout(()=>t.classList.remove('show'),3200)}
+</script>
+</body>
+</html>
